@@ -1,0 +1,42 @@
+AUREL PREMIUM WATCH SHOP — QUICK START
+
+1. Install Node.js 24 LTS from https://nodejs.org/
+2. Extract this ZIP. Open the aurel-watch-shop folder.
+3. On Windows, double-click start-windows.bat.
+
+Or run in a terminal:
+  npm ci
+  npm run setup
+  npm run dev
+
+Open http://localhost:5173
+
+ADMIN LOGIN
+  Email: admin@aurel.local
+  Password: open your local .env and use its generated ADMIN_PASSWORD value.
+  Sign in at /account, then open /admin.
+  A real customer account can be registered from /account.
+
+VERCEL DEMO
+  Upload source to a Git repository and import in Vercel.
+  Root: folder containing package.json
+  Framework: Vite
+  Node: 24.x
+  Install: npm ci
+  Build: npm run build
+  Output: dist
+  No database or environment variables are required for the demo.
+
+VERCEL FULL STACK
+  Add MONGODB_URI (MongoDB Atlas or another reachable cluster), APP_URL,
+  ADMIN_EMAIL, ADMIN_PASSWORD and VITE_APP_MODE=live. Redeploy.
+  Read docs/VERCEL.md for exact steps.
+
+Cash on delivery is included. Razorpay needs your own keys and webhook.
+All demo orders and product imagery represent a fictional sample store.
+
+Do not upload .env, data or node_modules. Install dependencies separately
+on each OS with npm ci. Complete source and lockfile are provided.
+
+Full guide: README.md
+Tests and limits: docs/VERIFICATION.md

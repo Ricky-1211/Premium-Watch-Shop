@@ -1,0 +1,27 @@
+services:
+  db:
+    image: mongo:8
+    volumes:
+      - aurel-mongo:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      # Local Docker uses HTTP; set NODE_ENV=production behind HTTPS in hosted use.
+      NODE_ENV: development
+      PORT: 3001
+      APP_URL: http://localhost:3001
+      MONGODB_URI: mongodb://db:27017/aurel
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@aurel.local}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in .env}
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  aurel-mongo:
